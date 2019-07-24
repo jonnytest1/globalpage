@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/funlittlegame/",
             "outputPath": "../pi/funlittlegame",
             "index": "src/index.html",
             "main": "src/main.ts",

@@ -47,10 +47,5 @@ export class AppComponent extends p5Initialize {
     this.player.draw();
     this.p5.noCursor();
 
-}
-
-
-
-
-
+  }
 }
