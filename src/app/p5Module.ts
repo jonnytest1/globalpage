@@ -1,18 +1,18 @@
-import * as p5 from "p5";
-//@ts-ignore
-var p5I: p5 = require('../../node_modules/p5/lib/p5.js');
+import * as p5 from 'p5';
+// @ts-ignore
+const p5I: p5 = require('../../node_modules/p5/lib/p5.js');
 
-export interface p5Added extends p5 {
+export interface P5Added extends p5 {
     rotat: any;
     crcl: (vec: p5.Vector, radius: number) => p5;
     sphre: (vec: p5.Vector, radius: number) => p5;
 
-    directionFromInput: () => p5.Vector
+    directionFromInput: () => p5.Vector;
 
 }
-export class p5Module {
+export class P5Module {
 
-    protected p5: p5Added = this.add(p5I)
+    protected p5: P5Added = this.add(p5I);
 
 
     circle(pos: p5.Vector, radius: number): p5 {
@@ -41,9 +41,9 @@ export class p5Module {
         }
         return this.p5.createVector(x, y);
     }
-    add(p5: p5): p5Added {
-        const p5Original = p5 as p5Added;
-        p5Original.crcl = (...args) => this.circle.call(this, ...args)
+    add(p5Inner: p5): P5Added {
+        const p5Original = p5Inner as P5Added;
+        p5Original.crcl = (...args) => this.circle.call(this, ...args);
         p5Original.sphre = (...args) => this.sphere.call(this, ...args);
         p5Original.directionFromInput = (...args) => this.directionFromInput.call(this, ...args);
         return p5Original;

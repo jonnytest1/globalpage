@@ -1,8 +1,8 @@
 import { AfterViewInit } from '@angular/core';
-import { p5Module } from './p5Module';
+import { P5Module } from './p5Module';
 
 import * as p5 from 'p5';
-export abstract class p5Initialize extends p5Module implements AfterViewInit {
+export abstract class P5Initialize extends P5Module implements AfterViewInit {
 
     protected height: number;
     protected width: number;
@@ -10,11 +10,11 @@ export abstract class p5Initialize extends p5Module implements AfterViewInit {
 
     abstract getContainer(): HTMLElement;
 
-    p5Init(p5: p5) {
-        p5.draw = () => this.draw.call(this);
-        p5.setup = () => this.setup.call(this);
-        p5.keyPressed = () => this.keyPressed.call(this);
-        p5.preload = () => this.preload.call(this);
+    p5Init(innerp5: p5) {
+        innerp5.draw = () => this.draw.call(this);
+        innerp5.setup = () => this.setup.call(this);
+        innerp5.keyPressed = () => this.keyPressed.call(this);
+        innerp5.preload = () => this.preload.call(this);
     }
 
     keyPressed() {
@@ -29,6 +29,7 @@ export abstract class p5Initialize extends p5Module implements AfterViewInit {
 
     }
     ngAfterViewInit(): void {
+
         const comp = this.getContainer();
         this.height = comp.offsetHeight;
         this.width = comp.offsetWidth;

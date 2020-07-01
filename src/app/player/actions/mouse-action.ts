@@ -1,10 +1,10 @@
 import { Action } from './action';
-import { p5Added } from '../../p5Module';
+import { P5Added } from '../../p5Module';
 import { Player } from '../player';
 
 
 export class MouseAction extends Action {
-    constructor(p5: p5Added) {
+    constructor(p5: P5Added) {
         super(p5);
     }
 
@@ -15,10 +15,10 @@ export class MouseAction extends Action {
     private readonly UP = this.p5.createVector(0, 1, 0);
     execute(player: Player) {
         if (!this.mouseX) {
-            this.mouseX = this.p5.mouseX
+            this.mouseX = this.p5.mouseX;
         }
         if (!this.mouseY) {
-            this.mouseY = this.p5.mouseY
+            this.mouseY = this.p5.mouseY;
         }
 
         const diffY = this.p5.mouseY - this.mouseY;
@@ -26,8 +26,8 @@ export class MouseAction extends Action {
         if (diffY < 0) {
             yLerp = this.DOWN.copy();
         }
-        const percentY = this.toPercent(diffY)
-        player.look.lerp(yLerp.x, yLerp.y, yLerp.z, percentY * 0.5)
+        const percentY = this.toPercent(diffY);
+        player.look.lerp(yLerp.x, yLerp.y, yLerp.z, percentY * 0.5);
 
 
         const diffX = this.p5.mouseX - this.mouseX;
@@ -35,8 +35,8 @@ export class MouseAction extends Action {
         if (diffX < 0) {
             xLerp = player.look.copy().cross(this.DOWN.copy());
         }
-        const percentX = this.toPercent(diffX)
-        player.look.lerp(xLerp.x, xLerp.y, xLerp.z, percentX * 0.5)
+        const percentX = this.toPercent(diffX);
+        player.look.lerp(xLerp.x, xLerp.y, xLerp.z, percentX * 0.5);
         this.mouseX = this.p5.mouseX;
         this.mouseY = this.p5.mouseY;
     }

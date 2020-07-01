@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { p5Initialize } from './p5-initialite';
+import { P5Initialize } from './p5-initialite';
 import { Terrain } from './terrain';
 import { Player } from './player/player';
 
@@ -9,7 +9,7 @@ import { Player } from './player/player';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent extends p5Initialize {
+export class AppComponent extends P5Initialize {
 
   @ViewChild('myCanvas')
   container: ElementRef<HTMLDivElement>;
@@ -28,14 +28,14 @@ export class AppComponent extends p5Initialize {
     return this.container.nativeElement;
   }
   preload() {
-    this.font = this.p5.loadFont( 'https://cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/font/SourceCodePro-Bold.otf');
+    this.font = this.p5.loadFont('https://cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/font/SourceCodePro-Bold.otf');
   }
 
   setup() {
     this.p5.createCanvas(this.width, this.height, this.p5.WEBGL);
     this.player = new Player(this.p5);
     this.terrain = new Terrain(this.p5);
-     // @ts-ignore
+    // @ts-ignore
     this.container.nativeElement.children[0].requestPointerLock();
 
     this.p5.textFont(this.font, 100);

@@ -1,8 +1,8 @@
 import { Player } from '../player';
-import { p5Added } from '../../p5Module';
+import { P5Added } from '../../p5Module';
 
 export abstract class Action {
-    constructor(protected p5: p5Added) { }
+    constructor(protected p5: P5Added) { }
 
     isValid(player: Player) {
         return true;
